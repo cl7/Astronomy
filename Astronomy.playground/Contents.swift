@@ -1,4 +1,3 @@
-//Astronomy by Chenglin Liu
 //Texture images are from: http://www.shadedrelief.com/natural3/pages/textures.html
 
 
@@ -14,12 +13,10 @@ class EarthScene: SCNScene  {
     let sunNode: SCNNode = SCNNode()
     let earthNode: SCNNode = SCNNode()
     let cloudNode: SCNNode = SCNNode()
-    
-    let sunNodeRotationSpeed: CGFloat  = CGFloat(M_PI_4/6)
-    let earthNodeRotationSpeed: CGFloat = CGFloat(M_PI_4/10)
-    
+    let sunNodeRotationSpeed: CGFloat  = CGFloat(Double.pi/6)
+    let earthNodeRotationSpeed: CGFloat = CGFloat(Double.pi/40)
     var earthNodeRotation: CGFloat = 0
-    var sunNodeRotation: CGFloat = CGFloat(M_PI_2)
+    var sunNodeRotation: CGFloat = CGFloat(Double.pi/2)
     
     override init()
     {
@@ -129,16 +126,15 @@ class EarthScene: SCNScene  {
     {
         var rotation = value
         
-        if value < CGFloat(-M_PI*2)
+        if value < CGFloat(-Double.pi*2)
         {
             
-            rotation = value + CGFloat(M_PI*2)
+            rotation = value + CGFloat(Double.pi*2)
             node.rotation = SCNVector4(x: 0.0, y: 1.0, z: 0.0, w: rotation)
         }
         
         return rotation - increase
     }
-    
     //To animate all the nodes in the whole scene
     func animateEarthScene()
     {
@@ -159,19 +155,16 @@ class EarthScene: SCNScene  {
     }
 }
 
-
-
 //SCNView for presenting the Scene
 
 class EarthView: SCNView {
-    
     let earthScene: EarthScene = EarthScene()
     let timeFormatter: DateFormatter = DateFormatter()
     let timerLabel: NSTextField = NSTextField()
+    
     override init(frame: NSRect, options: [String : Any]? = nil)
     {
         super.init(frame: frame, options: nil)
-        
         //Allow user to adjust viewing angle
         allowsCameraControl = true
         backgroundColor = NSColor.black
@@ -209,8 +202,6 @@ class EarthView: SCNView {
     
 }
 
-
 let earthView = EarthView(frame:CGRect(x: 0, y: 0, width: 400, height: 400))
-
 PlaygroundPage.current.liveView = earthView
 
