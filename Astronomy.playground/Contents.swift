@@ -143,7 +143,7 @@ class EarthScene: SCNScene  {
         earthNodeRotation = revolve(node: earthNode, value: earthNodeRotation, increase: earthNodeRotationSpeed)
         
         SCNTransaction.begin()
-        SCNTransaction.animationTimingFunction = (CAMediaTimingFunction(name:kCAMediaTimingFunctionLinear))
+        SCNTransaction.animationTimingFunction = (CAMediaTimingFunction(name:CAMediaTimingFunctionName.linear))
         
         SCNTransaction.animationDuration = 1
         SCNTransaction.completionBlock = {
